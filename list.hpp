@@ -79,6 +79,9 @@ public:
          * iter++
          */
         iterator operator++(int) {
+            if (ptr == nullptr || ptr->next == nullptr) {
+                throw invalid_iterator();
+            }
             iterator temp = *this;
             ptr = ptr->next;
             return temp;
@@ -88,6 +91,9 @@ public:
          * ++iter
          */
         iterator & operator++() {
+            if (ptr == nullptr || ptr->next == nullptr) {
+                throw invalid_iterator();
+            }
             ptr = ptr->next;
             return *this;
         }
@@ -96,6 +102,9 @@ public:
          * iter--
          */
         iterator operator--(int) {
+            if (ptr == nullptr || ptr->prev == nullptr || ptr->prev->data == nullptr) {
+                throw invalid_iterator();
+            }
             iterator temp = *this;
             ptr = ptr->prev;
             return temp;
@@ -105,6 +114,9 @@ public:
          * --iter
          */
         iterator & operator--() {
+            if (ptr == nullptr || ptr->prev == nullptr || ptr->prev->data == nullptr) {
+                throw invalid_iterator();
+            }
             ptr = ptr->prev;
             return *this;
         }
@@ -174,6 +186,9 @@ public:
          * iter++
          */
         const_iterator operator++(int) {
+            if (ptr == nullptr || ptr->next == nullptr) {
+                throw invalid_iterator();
+            }
             const_iterator temp = *this;
             ptr = ptr->next;
             return temp;
@@ -183,6 +198,9 @@ public:
          * ++iter
          */
         const_iterator & operator++() {
+            if (ptr == nullptr || ptr->next == nullptr) {
+                throw invalid_iterator();
+            }
             ptr = ptr->next;
             return *this;
         }
@@ -191,6 +209,9 @@ public:
          * iter--
          */
         const_iterator operator--(int) {
+            if (ptr == nullptr || ptr->prev == nullptr || ptr->prev->data == nullptr) {
+                throw invalid_iterator();
+            }
             const_iterator temp = *this;
             ptr = ptr->prev;
             return temp;
@@ -200,6 +221,9 @@ public:
          * --iter
          */
         const_iterator & operator--() {
+            if (ptr == nullptr || ptr->prev == nullptr || ptr->prev->data == nullptr) {
+                throw invalid_iterator();
+            }
             ptr = ptr->prev;
             return *this;
         }
